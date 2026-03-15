@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment variables — NEVER commit this
+.env
+
+# Mac junk
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+
+backup/
+backend/uploads/govIds/*
+!backend/uploads/govIds/.gitkeep
