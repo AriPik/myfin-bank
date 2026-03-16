@@ -4,7 +4,7 @@ const Transaction = require("../models/transaction.model");
 const Loan = require("../models/loan.model");
 const FixedDeposit = require("../models/fixedDeposit.model");
 const RecurringDeposit = require("../models/recurringDeposit.model");
-
+const { sendWelcomeEmail } = require("../utils/mailer");
 const getAllCustomers = async () => {
   const customers = await Customer.find({}).select("-password");
   return customers;
@@ -41,6 +41,11 @@ const activateCustomer = async (customerId) => {
     { new: true }
   ).select("-password");
 
+  await sendWelcomeEmail(
+    customer.name,
+    customer.email,
+    customer.customerId
+  );
   return updated;
 };
 

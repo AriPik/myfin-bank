@@ -5,7 +5,7 @@ const Customer = require("../models/customer.model");
 const Loan = require("../models/loan.model");
 const { processEMI } = require("../services/loan.service");
 const {
-  sendAutoDeactivationAlert,
+  sendAutoDeactivationAlert, sendEMIFailureAlert
 } = require("../utils/mailer");
 
 const startAtRiskCron = () => {
@@ -43,7 +43,6 @@ const startAtRiskCron = () => {
 };
 
 const startEMICron = () => {
-  // Runs at 9AM on 1st of every month
   cron.schedule("0 9 1 * *", async () => {
     const activeLoans = await Loan.find({ status: "ACTIVE" });
 
@@ -51,8 +50,27 @@ const startEMICron = () => {
       try {
         await processEMI(loan.loanId);
       } catch (error) {
-        // If insufficient balance skip silently
-        // Will be retried next month
+        // Insufficient balance — notify customer
+        try {
+          const account = await Account.findOne({
+            accountNumber: loan.accountNumber,
+          });
+          if (account) {
+            const customer = await Customer.findOne({
+              customerId: account.customerId,
+            });
+            if (customer) {
+              await sendEMIFailureAlert(
+                customer.name,
+                customer.email,
+                loan.loanId,
+                loan.emiAmount
+              );
+            }
+          }
+        } catch (mailError) {
+          console.log(`EMI failure mail error: ${mailError.message}`);
+        }
       }
     }
   });
@@ -66,10 +84,16 @@ const startBeneficiaryApprovalCron = () => {
       createdAt: { $lte: thirtyMinsAgo },
     });
     for (const ben of pendingBeneficiaries) {
-      await Beneficiary.findOneAndUpdate(
-        { beneficiaryId: ben.beneficiaryId },
-        { status: "ACTIVE" }
-      );
+      const accountExists = await Account.findOne({
+        accountNumber: ben.accountNumber,
+        status: "ACTIVE",
+      });
+      if (accountExists) {
+        await Beneficiary.findOneAndUpdate(
+          { beneficiaryId: ben.beneficiaryId },
+          { status: "ACTIVE" }
+        );
+      }
     }
   });
 };

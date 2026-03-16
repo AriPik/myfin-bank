@@ -34,9 +34,6 @@ const sendWelcomeEmail = async (
       <p>For security purposes, we recommend 
          changing your password after first login.</p>
       <br/>
-      <p>Login here: <a href="http://localhost:3000/login">
-         MyFin Bank Login</a></p>
-      <br/>
       <p>Welcome aboard! 🎉</p>
       <p>MyFin Bank — Customer Support Team</p>
     `,
@@ -290,6 +287,71 @@ const sendTicketResolvedNotification = async (
   await transporter.sendMail(mailOptions);
 };
 
+const sendEMIFailureAlert = async (customerName, customerEmail, loanId, emiAmount) => {
+  const customerMailOptions = {
+    from: `"MyFin Bank" <${process.env.ADMIN_EMAIL}>`,
+    to: customerEmail,
+    subject: `⚠️ EMI Payment Failed — ${loanId}`,
+    html: `
+      <h2>EMI Payment Failed</h2>
+      <p>Dear ${customerName},</p>
+      <p>We were unable to process your EMI payment for loan 
+         <strong>${loanId}</strong> due to insufficient balance.</p>
+      <p><strong>EMI Amount:</strong> ₹${emiAmount}</p>
+      <p>Please ensure sufficient funds are available in your 
+         account to avoid loan default.</p>
+      <p>If you have any queries, please contact our support team.</p>
+      <br/>
+      <p>MyFin Bank — Automated Notification System</p>
+    `,
+  };
+
+  const adminMailOptions = {
+    from: `"MyFin Bank" <${process.env.ADMIN_EMAIL}>`,
+    to: process.env.EMAIL_USER,
+    subject: `⚠️ EMI Payment Failed — ${loanId}`,
+    html: `
+      <h2>EMI Payment Failed</h2>
+      <p>This is an automated alert from MyFin Bank.</p>
+      <p><strong>Customer Name:</strong> ${customerName}</p>
+      <p><strong>Loan ID:</strong> ${loanId}</p>
+      <p><strong>EMI Amount:</strong> ₹${emiAmount}</p>
+      <p>The EMI payment failed due to insufficient balance 
+         in the customer's account.</p>
+      <br/>
+      <p>MyFin Bank — Automated Notification System</p>
+    `,
+  };
+
+  await transporter.sendMail(customerMailOptions);
+  await transporter.sendMail(adminMailOptions);
+};
+
+const sendAccountApprovedEmail = async (customerName, customerEmail, accountNumber, accountType) => {
+  const mailOptions = {
+    from: `"MyFin Bank" <${process.env.EMAIL_USER}>`,
+    to: customerEmail,
+    subject: `✅ Your ${accountType} Account is Approved — ${accountNumber}`,
+    html: `
+      <h2>Account Approved! ✅</h2>
+      <p>Dear ${customerName},</p>
+      <p>Your <strong>${accountType} Account</strong> has been 
+         successfully approved by our team.</p>
+      <br/>
+      <h3>Account Details:</h3>
+      <p><strong>Account Number:</strong> ${accountNumber}</p>
+      <p><strong>Account Type:</strong> ${accountType}</p>
+      ${accountType === "CURRENT" ? `<p><strong>Overdraft Limit:</strong> ₹5,000</p>` : ""}
+      <br/>
+      <p>You can now use this account for deposits, 
+         withdrawals and fund transfers.</p>
+      <br/>
+      <p>MyFin Bank — Customer Support Team</p>
+    `,
+  };
+  await transporter.sendMail(mailOptions);
+};
+
 module.exports = {
   sendZeroBalanceAlert,
   sendOverdraftAlert,
@@ -301,4 +363,6 @@ module.exports = {
   sendTicketAcknowledgement,
   sendAdminReplyNotification,
   sendTicketResolvedNotification,
+  sendEMIFailureAlert,
+  sendAccountApprovedEmail,
 };

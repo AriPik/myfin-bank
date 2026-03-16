@@ -321,7 +321,7 @@ const Accounts = () => {
                                             >
                                                 + Deposit
                                             </button>
-                                            {!(account.accountType === "CURRENT" && account.status === "AT_RISK") && (
+                                            {!(account.status === "AT_RISK") && (
                                                 <button
                                                     onClick={() => {
                                                         setSelectedAccount(account);

@@ -1,5 +1,5 @@
 const Customer = require("../models/customer.model");
-const { sendWelcomeEmail } = require("../utils/mailer");
+const { sendWelcomeEmail, sendAccountApprovedEmail } = require("../utils/mailer");
 const Account = require("../models/account.model");
 const generateId = require("../utils/idGenerator");
 
@@ -60,6 +60,7 @@ const approveAccount = async (accountNumber, adminId, adminName) => {
       status: "ACTIVE",
       approvedBy: adminId,
       approvedByName: "Admin",
+      ...(account.accountType === "CURRENT" && { overdraftLimit: 5000 }),
     },
     { new: true }
   );
@@ -68,10 +69,11 @@ const approveAccount = async (accountNumber, adminId, adminName) => {
     customerId: account.customerId,
   });
 
-  await sendWelcomeEmail(
+  await sendAccountApprovedEmail(
     customer.name,
     customer.email,
-    customer.customerId
+    accountNumber,
+    account.accountType
   );
 
   return updatedAccount;
