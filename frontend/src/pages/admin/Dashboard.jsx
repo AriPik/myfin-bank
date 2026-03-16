@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import axiosInstance from "../../services/axiosInstance";
 import { formatCurrency } from "../../utils/formatCurrency";
 import toast from "react-hot-toast";
-import { FiUsers, FiCreditCard, FiFileText, FiTrendingUp, FiArrowUp, FiArrowDown, FiDollarSign, FiRefreshCw, FiMessageSquare, FiBarChart2, FiCalendar } from "react-icons/fi";
+import { FiUsers, FiCreditCard, FiFileText, FiTrendingUp, FiArrowUp, FiArrowDown, FiRefreshCw, FiMessageSquare, FiBarChart2, FiCalendar, FiBriefcase } from "react-icons/fi";
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -211,7 +211,7 @@ const AdminDashboard = () => {
               value: formatCurrency(
                 summary?.loans?.totalOutstanding || 0
               ),
-              icon: <FiDollarSign />,
+              icon: <FiBriefcase />,
               color: "var(--accent)",
               delay: 0.6,
             },

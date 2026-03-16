@@ -2,7 +2,12 @@ const RecurringDeposit = require("../models/recurringDeposit.model");
 const Account = require("../models/account.model");
 const Transaction = require("../models/transaction.model");
 const generateId = require("../utils/idGenerator");
-
+const getExpectedRDRate = (tenure) => {
+  if (tenure <= 3) return 2.5;
+  if (tenure <= 6) return 3.5;
+  if (tenure <= 12) return 5.0;
+  return 6.0;
+};
 const openRD = async (customerId, data) => {
   const account = await Account.findOne({
     accountNumber: data.accountNumber,
@@ -25,7 +30,10 @@ const openRD = async (customerId, data) => {
       "Insufficient balance for first installment"
     );
   }
-
+  const expectedRate = getExpectedRDRate(data.tenureMonths);
+  if (Number(data.interestRate) !== expectedRate) {
+    throw new Error(`Invalid interest rate. Expected ${expectedRate}% for this tenure.`);
+  }
   const startDate = new Date();
   const maturityDate = new Date(startDate);
   maturityDate.setMonth(
@@ -142,7 +150,7 @@ const payInstallment = async (rdId, customerId) => {
         rd.tenureMonths *
         rd.interestRate *
         rd.tenureMonths) /
-        (100 * 12);
+      (100 * 12);
 
     const maturedBalance = newBalance + maturityAmount;
 

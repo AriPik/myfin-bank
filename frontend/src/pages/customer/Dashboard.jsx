@@ -12,7 +12,7 @@ import { setAccounts } from "../../features/account/accountSlice";
 import { formatCurrency, formatDate } from "../../utils/formatCurrency";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { FiCreditCard, FiBookOpen, FiDollarSign, FiTrendingUp, FiRefreshCw, FiMessageSquare, FiArrowUp, FiArrowDown, FiSend, FiPlusCircle, FiFileText, FiClock,FiCalendar } from "react-icons/fi";
+import { FiCreditCard, FiTag, FiPackage, FiBriefcase, FiBookOpen, FiDollarSign, FiTrendingUp, FiRefreshCw, FiMessageSquare, FiArrowUp, FiArrowDown, FiSend, FiPlusCircle, FiFileText, FiClock,FiCalendar } from "react-icons/fi";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -126,7 +126,7 @@ const Dashboard = () => {
             {
               title: "Total Balance",
               value: formatCurrency(totalBalance),
-              icon: <FiDollarSign />,
+              icon: <FiTag />,
               color: "var(--secondary)",
               delay: 0,
             },
@@ -140,7 +140,7 @@ const Dashboard = () => {
             {
               title: "Active Loans",
               value: loans.length,
-              icon: <FiDollarSign />,
+              icon: <FiBriefcase />,
               color: "var(--accent)",
               delay: 0.2,
             },

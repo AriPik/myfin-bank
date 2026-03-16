@@ -64,7 +64,13 @@ const FixedDeposit = () => {
       amount + (amount * rate * months) / (100 * 12);
     return Math.round(maturity * 100) / 100;
   };
-
+  const getFDInterestRate = (tenure) => {
+    if (!tenure || tenure <= 0) return "";
+    if (tenure <= 3) return 3.0;
+    if (tenure <= 6) return 4.5;
+    if (tenure <= 12) return 6.0;
+    return 7.0;
+  };
   const handlePreview = (values) => {
     if (values.amount && values.interestRate && values.tenureMonths) {
       const maturityAmount = calculateMaturity(
@@ -115,7 +121,7 @@ const FixedDeposit = () => {
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
-          "Failed to liquidate FD"
+        "Failed to liquidate FD"
       );
     }
   };
@@ -157,7 +163,7 @@ const FixedDeposit = () => {
                 marginBottom: "0.25rem",
               }}
             >
-              <FiTrendingUp/> Fixed Deposits
+              <FiTrendingUp /> Fixed Deposits
             </h4>
             <p
               style={{ color: "var(--text-light)", margin: 0 }}
@@ -226,7 +232,7 @@ const FixedDeposit = () => {
                             key={a.accountNumber}
                             value={a.accountNumber}
                           >
-                            {a.accountNumber} 
+                            {a.accountNumber}
                           </option>
                         ))}
                       </Field>
@@ -279,13 +285,20 @@ const FixedDeposit = () => {
                       >
                         Interest Rate (% per annum)
                       </label>
-                      <Field
-                        name="interestRate"
-                        type="number"
-                        placeholder="e.g. 7"
-                        className="myfin-input w-100"
-                        onBlur={() => handlePreview(values)}
-                      />
+                      <Field name="interestRate">
+                        {({ field, form }) => (
+                          <input
+                            {...field}
+                            type="number"
+                            readOnly
+                            className="myfin-input w-100"
+                            style={{ background: "var(--background)", cursor: "not-allowed", opacity: 0.8 }}
+                            value={getFDInterestRate(values.tenureMonths) || ""}
+                            onChange={() => { }}
+                            placeholder="Auto-filled based on tenure"
+                          />
+                        )}
+                      </Field>
                       <ErrorMessage
                         name="interestRate"
                         component="div"
@@ -307,13 +320,25 @@ const FixedDeposit = () => {
                       >
                         Tenure (Months)
                       </label>
-                      <Field
-                        name="tenureMonths"
-                        type="number"
-                        placeholder="e.g. 12"
-                        className="myfin-input w-100"
-                        onBlur={() => handlePreview(values)}
-                      />
+                      <Field name="tenureMonths">
+                        {({ field, form }) => (
+                          <input
+                            {...field}
+                            type="number"
+                            className="myfin-input w-100"
+                            placeholder="Enter tenure in months"
+                            onChange={(e) => {
+                              form.setFieldValue("tenureMonths", e.target.value);
+                              const rate = getFDInterestRate(Number(e.target.value));
+                              form.setFieldValue("interestRate", rate);
+                            }}
+                            onBlur={() => handlePreview({
+                              ...values,
+                              interestRate: getFDInterestRate(Number(values.tenureMonths))
+                            })}
+                          />
+                        )}
+                      </Field>
                       <ErrorMessage
                         name="tenureMonths"
                         component="div"
@@ -347,7 +372,7 @@ const FixedDeposit = () => {
                           color: "var(--success)",
                         }}
                       >
-                        <FiBarChart2/> Maturity Preview
+                        <FiBarChart2 /> Maturity Preview
                       </div>
                       <div className="row text-center">
                         {[

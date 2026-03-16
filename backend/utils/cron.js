@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const cron = require("node-cron");
 const Account = require("../models/account.model");
 const Beneficiary = require("../models/beneficiary.model");
@@ -11,6 +12,7 @@ const {
 const startAtRiskCron = () => {
   // Runs every 1 hour
   cron.schedule("0 * * * *", async () => {
+    if (mongoose.connection.readyState !== 1) return;
     const twentyFourHoursAgo = new Date(
       Date.now() - 24 * 60 * 60 * 1000
     );
@@ -44,6 +46,7 @@ const startAtRiskCron = () => {
 
 const startEMICron = () => {
   cron.schedule("0 9 1 * *", async () => {
+    if (mongoose.connection.readyState !== 1) return;
     const activeLoans = await Loan.find({ status: "ACTIVE" });
 
     for (const loan of activeLoans) {
@@ -78,6 +81,7 @@ const startEMICron = () => {
 
 const startBeneficiaryApprovalCron = () => {
   cron.schedule("* * * * *", async () => {
+    if (mongoose.connection.readyState !== 1) return;
     const thirtyMinsAgo = new Date(Date.now() - 30 * 60 * 1000);
     const pendingBeneficiaries = await Beneficiary.find({
       status: "PENDING",

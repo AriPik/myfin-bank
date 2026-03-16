@@ -8,7 +8,7 @@ import {
   formatCurrency,
   formatDateOnly,
 } from "../../utils/formatCurrency";
-import { FiDollarSign, FiCheckCircle, FiXCircle, FiCheck } from "react-icons/fi";
+import { FiDollarSign, FiCheckCircle, FiXCircle, FiCheck, FiBriefcase } from "react-icons/fi";
 
 const AdminLoans = () => {
   const [loans, setLoans] = useState([]);
@@ -104,7 +104,7 @@ const AdminLoans = () => {
               marginBottom: "0.25rem",
             }}
           >
-            <FiDollarSign/> Loan Management
+            <FiBriefcase /> Loan Management
           </h4>
           <p style={{ color: "var(--text-light)", margin: 0 }}>
             Review and manage loan applications

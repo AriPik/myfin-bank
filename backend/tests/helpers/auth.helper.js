@@ -18,7 +18,7 @@ const getAdminToken = async () => {
     .post("/api/auth/admin/login")
     .send({
       identifier: "myfinbank.admin@gmail.com",
-      password: "Admin@MyFinBank123",
+      password: "Admin@MyFinBank@123",
     });
   return res.body.token;
 };

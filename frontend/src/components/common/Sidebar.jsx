@@ -8,7 +8,7 @@ import {
   FiHome, FiCreditCard, FiBookOpen, FiSend,
   FiDollarSign, FiTrendingUp, FiRefreshCw,
   FiUsers, FiMessageSquare, FiUser, FiBarChart2,
-  FiLogOut, FiX, FiMenu,
+  FiLogOut, FiX, FiMenu, FiBriefcase
 } from "react-icons/fi";
 
 const customerLinks = [
@@ -16,7 +16,7 @@ const customerLinks = [
   { path: "/customer/accounts", icon: <FiCreditCard />, label: "Accounts" },
   { path: "/customer/passbook", icon: <FiBookOpen />, label: "Passbook" },
   { path: "/customer/transfer", icon: <FiSend />, label: "Transfer" },
-  { path: "/customer/loans", icon: <FiDollarSign />, label: "Loans" },
+  { path: "/customer/loans", icon: <FiBriefcase />, label: "Loans" },
   { path: "/customer/fixed-deposit", icon: <FiTrendingUp />, label: "Fixed Deposit" },
   { path: "/customer/recurring-deposit", icon: <FiRefreshCw />, label: "Recurring Deposit" },
   { path: "/customer/beneficiaries", icon: <FiUsers />, label: "Beneficiaries" },
@@ -28,7 +28,7 @@ const adminLinks = [
   { path: "/admin/dashboard", icon: <FiHome />, label: "Dashboard" },
   { path: "/admin/customers", icon: <FiUsers />, label: "Customers" },
   { path: "/admin/accounts", icon: <FiCreditCard />, label: "Accounts" },
-  { path: "/admin/loans", icon: <FiDollarSign />, label: "Loans" },
+  { path: "/admin/loans", icon: <FiBriefcase />, label: "Loans" },
   { path: "/admin/support", icon: <FiMessageSquare />, label: "Support" },
   { path: "/admin/reports", icon: <FiBarChart2 />, label: "Reports" },
 ];

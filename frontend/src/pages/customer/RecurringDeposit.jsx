@@ -65,7 +65,13 @@ const RecurringDeposit = () => {
       (monthly * months * rate * months) / (100 * 12);
     return Math.round(maturity * 100) / 100;
   };
-
+  const getRDInterestRate = (tenure) => {
+    if (!tenure || tenure <= 0) return "";
+    if (tenure <= 3) return 2.5;
+    if (tenure <= 6) return 3.5;
+    if (tenure <= 12) return 5.0;
+    return 6.0;
+  };
   const handlePreview = (values) => {
     if (
       values.monthlyAmount &&
@@ -118,7 +124,7 @@ const RecurringDeposit = () => {
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
-          "Failed to pay installment"
+        "Failed to pay installment"
       );
     }
   };
@@ -160,7 +166,7 @@ const RecurringDeposit = () => {
                 marginBottom: "0.25rem",
               }}
             >
-              <FiRefreshCw/> Recurring Deposits
+              <FiRefreshCw /> Recurring Deposits
             </h4>
             <p
               style={{ color: "var(--text-light)", margin: 0 }}
@@ -229,7 +235,7 @@ const RecurringDeposit = () => {
                             key={a.accountNumber}
                             value={a.accountNumber}
                           >
-                            {a.accountNumber} 
+                            {a.accountNumber}
                           </option>
                         ))}
                       </Field>
@@ -282,13 +288,20 @@ const RecurringDeposit = () => {
                       >
                         Interest Rate (% per annum)
                       </label>
-                      <Field
-                        name="interestRate"
-                        type="number"
-                        placeholder="e.g. 6"
-                        className="myfin-input w-100"
-                        onBlur={() => handlePreview(values)}
-                      />
+                      <Field name="interestRate">
+                        {({ field, form }) => (
+                          <input
+                            {...field}
+                            type="number"
+                            readOnly
+                            className="myfin-input w-100"
+                            style={{ background: "var(--background)", cursor: "not-allowed", opacity: 0.8 }}
+                            value={getRDInterestRate(values.tenureMonths) || ""}
+                            onChange={() => { }}
+                            placeholder="Auto-filled based on tenure"
+                          />
+                        )}
+                      </Field>
                       <ErrorMessage
                         name="interestRate"
                         component="div"
@@ -310,13 +323,25 @@ const RecurringDeposit = () => {
                       >
                         Tenure (Months)
                       </label>
-                      <Field
-                        name="tenureMonths"
-                        type="number"
-                        placeholder="Min 3 months"
-                        className="myfin-input w-100"
-                        onBlur={() => handlePreview(values)}
-                      />
+                      <Field name="tenureMonths">
+                        {({ field, form }) => (
+                          <input
+                            {...field}
+                            type="number"
+                            className="myfin-input w-100"
+                            placeholder="Min 3 months"
+                            onChange={(e) => {
+                              form.setFieldValue("tenureMonths", e.target.value);
+                              const rate = getRDInterestRate(Number(e.target.value));
+                              form.setFieldValue("interestRate", rate);
+                            }}
+                            onBlur={() => handlePreview({
+                              ...values,
+                              interestRate: getRDInterestRate(Number(values.tenureMonths))
+                            })}
+                          />
+                        )}
+                      </Field>
                       <ErrorMessage
                         name="tenureMonths"
                         component="div"
@@ -350,7 +375,7 @@ const RecurringDeposit = () => {
                           color: "var(--success)",
                         }}
                       >
-                        <FiBarChart2/> Maturity Preview
+                        <FiBarChart2 /> Maturity Preview
                       </div>
                       <div className="row text-center">
                         {[

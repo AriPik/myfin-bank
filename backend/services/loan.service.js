@@ -15,7 +15,11 @@ const calculateEMI = (principal, annualRate, tenureMonths) => {
     (Math.pow(1 + monthlyRate, tenureMonths) - 1);
   return Math.round(emi * 100) / 100;
 };
-
+const getExpectedLoanRate = (amount) => {
+  if (amount <= 50000) return 6.0;
+  if (amount <= 150000) return 8.5;
+  return 12.0;
+};
 const applyLoan = async (customerId, data) => {
   const account = await Account.findOne({
     accountNumber: data.accountNumber,
@@ -45,11 +49,16 @@ const applyLoan = async (customerId, data) => {
     );
   }
 
-  const emiAmount = calculateEMI(
-    data.loanAmount,
-    data.interestRate,
-    data.tenureMonths
-  );
+  const expectedRate = getExpectedLoanRate(data.loanAmount);
+if (Number(data.interestRate) !== expectedRate) {
+  throw new Error(`Invalid interest rate. Expected ${expectedRate}% for this loan amount.`);
+}
+
+const emiAmount = calculateEMI(
+  data.loanAmount,
+  data.interestRate,
+  data.tenureMonths
+);
 
   const count = await Loan.countDocuments();
   const loanId = generateId("LN", count + 1);

@@ -2,7 +2,12 @@ const FixedDeposit = require("../models/fixedDeposit.model");
 const Account = require("../models/account.model");
 const Transaction = require("../models/transaction.model");
 const generateId = require("../utils/idGenerator");
-
+const getExpectedFDRate = (tenure) => {
+  if (tenure <= 3) return 3.0;
+  if (tenure <= 6) return 4.5;
+  if (tenure <= 12) return 6.0;
+  return 7.0;
+};
 const openFD = async (customerId, data) => {
   const account = await Account.findOne({
     accountNumber: data.accountNumber,
@@ -23,7 +28,10 @@ const openFD = async (customerId, data) => {
   if (account.balance < data.amount) {
     throw new Error("Insufficient balance to open FD");
   }
-
+  const expectedRate = getExpectedFDRate(data.tenureMonths);
+  if (Number(data.interestRate) !== expectedRate) {
+    throw new Error(`Invalid interest rate. Expected ${expectedRate}% for this tenure.`);
+  }
   // Calculate maturity amount
   // Simple interest: P + (P * R/100 * T/12)
   const maturityAmount =

@@ -10,7 +10,7 @@ import loanService from "../../services/loanService";
 import accountService from "../../services/accountService";
 import { setAccounts } from "../../features/account/accountSlice";
 import { formatCurrency, formatDateOnly } from "../../utils/formatCurrency";
-import { FiDollarSign, FiBarChart2, FiCheckCircle, FiXCircle } from "react-icons/fi";
+import { FiDollarSign, FiBarChart2, FiCheckCircle, FiXCircle, FiBriefcase } from "react-icons/fi";
 
 const loanSchema = Yup.object({
   accountNumber: Yup.string().required(
@@ -69,7 +69,12 @@ const Loans = () => {
       (Math.pow(1 + monthlyRate, tenureMonths) - 1);
     return Math.round(emi * 100) / 100;
   };
-
+  const getLoanInterestRate = (amount) => {
+    if (!amount || amount <= 0) return "";
+    if (amount <= 50000) return 6.0;
+    if (amount <= 150000) return 8.5;
+    return 12.0;
+  };
   const handlePreviewEMI = (values) => {
     if (
       values.loanAmount &&
@@ -110,7 +115,7 @@ const Loans = () => {
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
-          "Loan application failed"
+        "Loan application failed"
       );
     }
   };
@@ -167,7 +172,7 @@ const Loans = () => {
                 marginBottom: "0.25rem",
               }}
             >
-              <FiDollarSign/> Loans
+              <FiBriefcase /> Loans
             </h4>
             <p
               style={{ color: "var(--text-light)", margin: 0 }}
@@ -198,7 +203,7 @@ const Loans = () => {
                 marginBottom: "1.5rem",
               }}
             >
-               Loan Application
+              Loan Application
             </h5>
 
             <Formik
@@ -237,7 +242,7 @@ const Loans = () => {
                             key={a.accountNumber}
                             value={a.accountNumber}
                           >
-                            {a.accountNumber} 
+                            {a.accountNumber}
                           </option>
                         ))}
                       </Field>
@@ -262,13 +267,25 @@ const Loans = () => {
                       >
                         Loan Amount (₹)
                       </label>
-                      <Field
-                        name="loanAmount"
-                        type="number"
-                        placeholder="Enter loan amount"
-                        className="myfin-input w-100"
-                        onBlur={() => handlePreviewEMI(values)}
-                      />
+                      <Field name="loanAmount">
+                        {({ field, form }) => (
+                          <input
+                            {...field}
+                            type="number"
+                            className="myfin-input w-100"
+                            placeholder="Enter loan amount"
+                            onChange={(e) => {
+                              form.setFieldValue("loanAmount", e.target.value);
+                              const rate = getLoanInterestRate(Number(e.target.value));
+                              form.setFieldValue("interestRate", rate);
+                            }}
+                            onBlur={() => handlePreviewEMI({
+                              ...values,
+                              interestRate: getLoanInterestRate(Number(values.loanAmount))
+                            })}
+                          />
+                        )}
+                      </Field>
                       <ErrorMessage
                         name="loanAmount"
                         component="div"
@@ -288,15 +305,22 @@ const Loans = () => {
                           display: "block",
                         }}
                       >
-                        Interest Rate (% per annum)
+                        Interest Rate (% per annum) - Auto
                       </label>
-                      <Field
-                        name="interestRate"
-                        type="number"
-                        placeholder="e.g. 8.5"
-                        className="myfin-input w-100"
-                        onBlur={() => handlePreviewEMI(values)}
-                      />
+                      <Field name="interestRate">
+                        {({ field, form }) => (
+                          <input
+                            {...field}
+                            type="number"
+                            readOnly
+                            className="myfin-input w-100"
+                            style={{ background: "var(--background)", cursor: "not-allowed", opacity: 0.8 }}
+                            value={getLoanInterestRate(values.loanAmount) || ""}
+                            onChange={() => { }}
+                            placeholder="Auto-filled based on amount"
+                          />
+                        )}
+                      </Field>
                       <ErrorMessage
                         name="interestRate"
                         component="div"
@@ -358,7 +382,7 @@ const Loans = () => {
                           color: "var(--secondary)",
                         }}
                       >
-                        <FiBarChart2/> EMI Preview
+                        <FiBarChart2 /> EMI Preview
                       </div>
                       <div className="row text-center">
                         {[
