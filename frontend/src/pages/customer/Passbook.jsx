@@ -108,7 +108,7 @@ const Passbook = () => {
               marginBottom: "0.25rem",
             }}
           >
-            <FiBookOpen/> Passbook
+            <FiBookOpen /> Passbook
           </h4>
           <p style={{ color: "var(--text-light)", margin: 0 }}>
             View all your transactions
@@ -306,12 +306,29 @@ const Passbook = () => {
                     <td
                       style={{
                         padding: "1rem",
-                        fontSize: "0.8rem",
-                        fontWeight: "600",
-                        color: "var(--text-light)",
                       }}
                     >
-                      {txn.txnId}
+                      <div
+                        style={{
+                          fontSize: "0.8rem",
+                          fontWeight: "600",
+                          color: "var(--text-light)",
+                        }}
+                      >
+                        {txn.txnId}
+                      </div>
+                      {txn.transactionCategory === "TRANSFER" && txn.referenceId && (
+                        <div
+                          style={{
+                            fontSize: "0.72rem",
+                            color: "var(--secondary)",
+                            marginTop: "2px",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Ref: {txn.referenceId}
+                        </div>
+                      )}
                     </td>
                     <td>
                       <span>
