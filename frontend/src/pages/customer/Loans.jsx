@@ -461,7 +461,7 @@ const Loans = () => {
             className="myfin-card text-center"
             style={{ padding: "3rem" }}
           >
-            <div style={{ fontSize: "3rem", display: "flex", justifyContent: "center" }}><FiDollarSign /></div>
+            <div style={{ fontSize: "3rem", display: "flex", justifyContent: "center" }}><FiBriefcase /></div>
             <h5 style={{ marginTop: "1rem" }}>No loans yet</h5>
             <p style={{ color: "var(--text-light)" }}>
               Apply for your first loan
