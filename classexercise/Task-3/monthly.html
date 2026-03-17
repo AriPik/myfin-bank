@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Activities</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="checkAuth()">
+
+<header>
+    <div class="header-container">
+        <img src="logo.jpeg" alt="Logo">
+        <h2>Spring Flowers School</h2>
+    </div>
+</header>
+
+<nav>
+    <a href="profile.html">Home</a>
+    <a href="studentinfo.html">Student Info</a>
+    <a href="monthly.html">Monthly Chart</a>
+    <a href="timetable.html">Time Table</a>
+    <a href="#" onclick="logout()">Logout</a>
+</nav>
+
+<section class="content-card"> <!-- content-card is used here to style the main content area of the monthly activities page -->
+    <h2>Monthly Subject Activities</h2>
+
+    <select id="subjectSelect" onchange="showActivities()">
+        <option value="">Select Subject</option>
+        <option value="Maths">Maths</option>
+        <option value="Science">Science</option>
+        <option value="English">English</option>
+    </select>
+
+    <div class="table-responsive">
+        <table class="activity-table" id="activityTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Activity Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- JS will insert rows here -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<footer>
+    © 2026 Spring Flowers School | All Rights Reserved
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

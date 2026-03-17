@@ -1,0 +1,381 @@
+/* =========================
+   GLOBAL
+========================= */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background-color: #1f3c88;
+    color: white;
+    padding: 15px 0;
+}
+
+.header-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.header-container img {
+    width: 50px;
+    margin-right: 15px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    background-color: #0d1b2a;
+    padding: 12px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 18px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+@media (max-width: 768px) {
+
+    nav {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+        padding: 8px 0;
+    }
+
+}
+
+/* =========================
+   CONTENT CARD
+========================= */
+
+.content-card {
+    background: white;
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.dashboard-img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background-color: #0d1b2a;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    margin-top: 40px;
+}
+
+/* =========================
+   AUTH PAGE
+========================= */
+
+.auth-body {
+    background: linear-gradient(to right, #1f3c88, #39a2db);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px 35px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 750px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.logo-section img {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.auth-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.auth-box {
+    width: 280px;
+}
+
+.auth-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Inputs */
+.auth-box input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border 0.2s ease;
+}
+
+.auth-box input:focus {
+    border-color: #1f3c88;
+}
+
+/* Buttons */
+.auth-box button {
+    width: 100%;
+    height: 44px;
+    background-color: #1f3c88;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.auth-box button:hover {
+    background-color: #163172;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   STUDENT INFO PAGE
+========================= */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.student-profile {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Rounded student image */
+.profile-left img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #1f3c88;
+}
+
+/* Student details */
+.profile-right {
+    min-width: 320px;
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.label {
+    font-weight: bold;
+    color: #1f3c88;
+}
+
+.value {
+    color: #333;
+}
+
+/* =========================
+   MONTHLY ACTIVITY TABLE
+========================= */
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+.activity-table th,
+.activity-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.activity-table th {
+    background-color: #1f3c88;
+    color: white;
+}
+
+.activity-table tbody tr:hover {
+    background-color: #f0f6ff;
+}
+
+/* =========================
+   TIME TABLE
+========================= */
+
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.timetable th,
+.timetable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.timetable th {
+    background-color: #1f3c88;
+    color: white;
+}
+
+/* Lunch styling */
+.lunch {
+    background-color: #ffe0b2;
+    font-weight: bold;
+}
+
+/* Row hover */
+.timetable tbody tr:hover {
+    background-color: #f0f6ff;
+}
+
+/* Cell hover */
+.timetable tbody td:hover {
+    background-color: #dbeafe;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Prevent lunch distortion */
+.lunch:hover {
+    background-color: #ffd699 !important;
+    transform: none;
+    cursor: default;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Auth Page */
+    .auth-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Content Card */
+    .content-card {
+        width: 95%;
+        padding: 20px;
+    }
+
+    /* Student Profile */
+    .student-profile {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+
+    .profile-right {
+        min-width: 100%;
+        text-align: left;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    /* Reduce image size on phones */
+    .profile-left img {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Navigation stack */
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
+.profile-left img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #1f3c88;
+    display: block;
+}

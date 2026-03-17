@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Flowers School - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+
+<div class="overlay">
+    <div class="auth-card">
+
+        <div class="logo-section">
+            <img src="logo.jpeg" alt="School Logo">
+            <h2>Spring Flowers School</h2>
+        </div>
+
+        <div class="auth-container"><!--auth-container is a class for styling the container that holds both login and register sections!-->
+
+            <!-- LOGIN -->
+            <div class="auth-box"> <!--auth-box is a class for styling the login and register sections!-->
+                <h3>Login</h3>
+                <input type="text" id="loginUser" placeholder="Username">
+                <input type="password" id="loginPass" placeholder="Password">
+                <button onclick="login()">Login</button>
+            </div>
+
+            <!-- REGISTER -->
+            <div class="auth-box">
+                <h3>Register</h3>
+                <input type="text" id="regUser" placeholder="Create Username">
+                <input type="password" id="regPass" placeholder="Create Password">
+                <button onclick="register()">Register</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

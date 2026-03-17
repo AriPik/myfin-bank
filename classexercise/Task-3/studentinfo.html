@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="checkAuth()">
+
+<header>
+    <div class="header-container">
+        <img src="logo.jpeg" alt="Logo">
+        <h2>Spring Flowers School</h2>
+    </div>
+</header>
+
+<nav>
+    <a href="profile.html">Home</a>
+    <a href="studentinfo.html">Student Info</a>
+    <a href="monthly.html">Monthly Chart</a>
+    <a href="timetable.html">Time Table</a>
+    <a href="#" onclick="logout()">Logout</a>
+</nav>
+
+<section class="content-card">
+
+    <h2 class="section-title">Student Information</h2>
+
+    <div class="student-profile">
+
+        <!-- LEFT SIDE IMAGE -->
+        <div class="profile-left">
+            <img src="Rahul.jpg" alt="Student Image">
+        </div>
+
+        <!-- RIGHT SIDE DETAILS -->
+        <div class="profile-right">
+
+            <div class="info-row">
+                <span class="label">Name</span>
+                <span class="value">Rahul Sharma</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">Class</span>
+                <span class="value">8th Grade</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">Roll Number</span>
+                <span class="value">23</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">Section</span>
+                <span class="value">A</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">Email</span>
+                <span class="value">rahul.sharma@example.com</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Spring Flowers School | All Rights Reserved
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="checkAuth()">
+
+<header>
+    <div class="header-container">
+        <img src="logo.jpeg" alt="Logo">
+        <h2>Spring Flowers School</h2>
+    </div>
+</header>
+
+<nav>
+    <a href="profile.html">Home</a>
+    <a href="studentinfo.html">Student Info</a>
+    <a href="monthly.html">Monthly Chart</a>
+    <a href="timetable.html">Time Table</a>
+    <a href="#" onclick="logout()">Logout</a>
+</nav>
+
+<section class="content-card">
+    <h2>Weekly Time Table</h2>
+
+    <div class="table-responsive">
+        <table class="timetable">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>9:00-9:45</th>
+                    <th>9:45-10:30</th>
+                    <th>10:30-11:15</th>
+                    <th>11:15-12:00</th>
+                    <th>12:00-1:00</th>
+                    <th>1:00-1:45</th>
+                    <th>1:45-2:30</th>
+                    <th>2:30-3:15</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Monday</td>
+                    <td>Maths</td>
+                    <td>Science</td>
+                    <td>English</td>
+                    <td>Computer</td>
+                    <td class="lunch">Lunch</td>
+                    <td>History</td>
+                    <td>Maths</td>
+                    <td>Sports</td>
+                </tr>
+
+                <tr>
+                    <td>Tuesday</td>
+                    <td>Science</td>
+                    <td>Maths</td>
+                    <td>Geography</td>
+                    <td>English</td>
+                    <td class="lunch">Lunch</td>
+                    <td>Computer</td>
+                    <td>Art</td>
+                    <td>Sports</td>
+                </tr>
+
+                <tr>
+                    <td>Wednesday</td>
+                    <td>English</td>
+                    <td>Science</td>
+                    <td>Maths</td>
+                    <td>History</td>
+                    <td class="lunch">Lunch</td>
+                    <td>Computer</td>
+                    <td>Geography</td>
+                    <td>Library</td>
+                </tr>
+
+                <tr>
+                    <td>Thursday</td>
+                    <td>Maths</td>
+                    <td>English</td>
+                    <td>Science</td>
+                    <td>Computer</td>
+                    <td class="lunch">Lunch</td>
+                    <td>History</td>
+                    <td>Art</td>
+                    <td>Sports</td>
+                </tr>
+
+                <tr>
+                    <td>Friday</td>
+                    <td>Science</td>
+                    <td>Maths</td>
+                    <td>English</td>
+                    <td>Geography</td>
+                    <td class="lunch">Lunch</td>
+                    <td>Computer</td>
+                    <td>History</td>
+                    <td>Sports</td>
+                </tr>
+
+                <tr>
+                    <td>Saturday</td>
+                    <td>Maths</td>
+                    <td>Science</td>
+                    <td>English</td>
+                    <td>Activity</td>
+                    <td class="lunch">Lunch</td>
+                    <td>Art</td>
+                    <td>Library</td>
+                    <td>Sports</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Spring Flowers School | All Rights Reserved
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

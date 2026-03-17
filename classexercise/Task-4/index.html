@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blog & Todo Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Blog & Todo Dashboard</h1>
+    </header>
+
+    <main class="container">
+
+        <section class="card">
+            <div class="card-header">
+                <h2>Latest Blog Posts</h2>
+                <span id="postCount" class="badge"></span>
+            </div>
+            <div id="posts" class="content"></div>
+            <div id="postsLoader" class="loader hidden">Loading posts...</div>
+            <div id="postsError" class="error-message"></div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <h2>Todo List</h2>
+                <span id="todoStats" class="badge"></span>
+            </div>
+            <div id="todos" class="content"></div>
+            <div id="todosLoader" class="loader hidden">Loading todos...</div>
+            <div id="todosError" class="error-message"></div>
+        </section>
+
+    </main>
+
+
+    <div id="error" class="error-message"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

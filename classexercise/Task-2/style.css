@@ -1,0 +1,42 @@
+body {
+    font-family: Arial;
+    margin: 20px;
+}
+
+header {
+    background-color: lightblue;
+    padding: 10px;
+}
+
+nav {
+    background-color: lightgray;
+    padding: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+section {
+    margin-top: 20px;
+}
+.student-photo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 2px solid gray;
+}
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+footer {
+    margin-top: 20px;
+    background-color: lightblue;
+    padding: 10px;
+}

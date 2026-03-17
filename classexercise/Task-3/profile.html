@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="checkAuth()">
+
+<header>
+    <div class="header-container">
+        <img src="logo.jpeg" alt="Logo">
+        <h2>Spring Flowers School</h2>
+    </div>
+</header>
+
+<nav>
+    <a href="profile.html">Home</a>
+    <a href="studentinfo.html">Student Info</a>
+    <a href="monthly.html">Monthly Chart</a>
+    <a href="timetable.html">Time Table</a>
+    <a href="#" onclick="logout()">Logout</a>
+</nav>
+
+<section class="content-card">
+    <h2>Welcome Student</h2>
+
+    <img src="img1.jpg" alt="School Image" class="dashboard-img">
+
+    <p>
+        This is your student dashboard.  
+        Use the navigation bar above to access Student Information,  
+        Monthly Activities, and Time Table.
+    </p>
+</section>
+
+
+<footer>
+    © 2026 Spring Flowers School | All Rights Reserved
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

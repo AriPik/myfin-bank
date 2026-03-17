@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Course Manager</title>
+</head>
+
+<body>
+
+<h2>Course Manager</h2>
+
+<h3>Add Course</h3>
+
+<input id="name" placeholder="Course Name">
+<input id="duration" placeholder="Duration">
+<button onclick="addCourse()">Add Course</button>
+
+<p id="error"></p>
+
+<hr>
+
+<h3>Available Courses</h3>
+
+<ul id="courses"></ul>
+
+<script>
+
+async function loadCourses(){
+    const res = await fetch("/api/v1/courses")
+    const courses = await res.json()
+
+    const list = document.getElementById("courses")
+    list.innerHTML=""
+
+    courses.forEach(course=>{
+        const li=document.createElement("li")
+        li.textContent = course.name + " ("+course.duration+")"
+
+        const btn=document.createElement("button")
+        btn.textContent="Delete"
+
+        btn.onclick=()=>deleteCourse(course._id)
+
+        li.appendChild(btn)
+        list.appendChild(li)
+    })
+}
+
+async function addCourse(){
+    const name=document.getElementById("name").value
+    const duration=document.getElementById("duration").value
+
+    const res = await fetch("/api/v1/courses",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({name,duration})
+    })
+
+    const data = await res.json()
+
+    if(data.error){
+        document.getElementById("error").innerText=data.error
+    }
+
+    loadCourses()
+}
+
+async function deleteCourse(id){
+    await fetch("/api/v1/courses/"+id,{
+        method:"DELETE"
+    })
+
+    loadCourses()
+}
+
+loadCourses()
+
+</script>
+
+</body>
+</html>

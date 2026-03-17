@@ -1,0 +1,97 @@
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg,#4facfe,#00f2fe);
+    height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Home page */
+
+.container{
+    text-align:center;
+    color:white;
+}
+
+.container h1{
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.buttons button{
+    padding:12px 30px;
+    margin:10px;
+    font-size:16px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:white;
+    color:#333;
+    transition:0.3s;
+}
+
+.buttons button:hover{
+    background:#333;
+    color:white;
+}
+
+/* Forms */
+
+.form-container{
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    width:300px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#4facfe;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+}
+
+.message{
+    margin-top:10px;
+    color:green;
+}
+
+/* Admin Dashboard */
+
+.admin-container{
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.admin-table{
+    margin-top:20px;
+    border-collapse:collapse;
+    width:100%;
+}
+
+.admin-table th,
+.admin-table td{
+    border:1px solid #ccc;
+    padding:10px;
+}
+
+.admin-table th{
+    background:#3498db;
+    color:white;
+}

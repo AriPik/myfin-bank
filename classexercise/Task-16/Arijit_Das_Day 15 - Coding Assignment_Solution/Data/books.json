@@ -1,0 +1,122 @@
+[{
+  "_id": {
+    "$oid": "69a41c9598e3e70d1aae9061"
+  },
+  "title": "Harry Potter",
+  "genre": "Fantasy",
+  "publicationYear": 1997,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905b"
+  },
+  "ratings": [
+    {
+      "user": "Arijit",
+      "score": 5,
+      "comment": "Amazing book!"
+    },
+    {
+      "user": "Riya",
+      "score": 4,
+      "comment": "Magical!"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69a41c9598e3e70d1aae9062"
+  },
+  "title": "Foundation",
+  "genre": "Science Fiction",
+  "publicationYear": 1952,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905c"
+  },
+  "ratings": [
+    {
+      "user": "Rahul",
+      "score": 5,
+      "comment": "Masterpiece"
+    },
+    {
+      "user": "Sneha",
+      "score": 4,
+      "comment": "Very deep sci-fi"
+    },
+    {
+      "user": "Aman",
+      "score": 5,
+      "comment": "Brilliant writing"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69a41c9598e3e70d1aae9063"
+  },
+  "title": "Game of Thrones",
+  "genre": "Fantasy",
+  "publicationYear": 1996,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905d"
+  },
+  "ratings": [
+    {
+      "user": "Priya",
+      "score": 5,
+      "comment": "Epic fantasy"
+    },
+    {
+      "user": "Karan",
+      "score": 4,
+      "comment": "Loved the politics"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69a41c9598e3e70d1aae9064"
+  },
+  "title": "I, Robot",
+  "genre": "Science Fiction",
+  "publicationYear": 1950,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905c"
+  },
+  "ratings": []
+},
+{
+  "_id": {
+    "$oid": "69a41c9598e3e70d1aae9065"
+  },
+  "title": "Clash of Kings",
+  "genre": "Fantasy",
+  "publicationYear": 1998,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905d"
+  },
+  "ratings": []
+},
+{
+  "_id": {
+    "$oid": "69a41dfc98e3e70d1aae9067"
+  },
+  "title": "The Midnight Library",
+  "genre": "Fantasy",
+  "publicationYear": 2020,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905b"
+  },
+  "ratings": []
+},
+{
+  "_id": {
+    "$oid": "69a41dfc98e3e70d1aae9068"
+  },
+  "title": "Project Hail Mary",
+  "genre": "Science Fiction",
+  "publicationYear": 2021,
+  "authorId": {
+    "$oid": "69a41b9b98e3e70d1aae905c"
+  },
+  "ratings": []
+}]

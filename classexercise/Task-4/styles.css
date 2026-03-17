@@ -1,0 +1,138 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    color: white;
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px 0 50px;
+}
+
+/* Card */
+.card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    color: #667eea;
+    font-size: 22px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Posts */
+.post {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.post:last-child {
+    border-bottom: none;
+}
+
+.post h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.post p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Todos */
+.todo {
+    padding: 8px 0;
+}
+
+.todo label {
+    font-size: 15px;
+    color: #444;
+    cursor: pointer;
+}
+
+.todo input {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+/* Error */
+.error-message {
+    text-align: center;
+    margin: 15px;
+    color: #ff4d4f;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    background: #667eea;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.loader {
+    text-align: center;
+    padding: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.hidden {
+    display: none;
+}
